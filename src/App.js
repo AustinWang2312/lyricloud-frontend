@@ -29,35 +29,6 @@ const test = [{"text":"","value":5},{"text":"o","value":8},{"text":"holy","value
 function SimpleWordcloud(wordMap) {
   return <ReactWordcloud words={wordMap} />
 }
-  // const requestOptions = {
-  //   mode: 'cors', 
-  //   origin: "https://localhost:3000",
-  //   method: 'GET',
-  //   headers: {
-      // 'Content-Type': 'application/json',
-      // 'Authorization': "Bearer eKj82WsaoW89JCnh2Lzhkz5m2xVejbBEJONdDj5aQllvfmB17HeK7JvwNJUSjyjq",
-      // 'Access-Control-Allow-Origin': '*',
-      // 'Access-Control-Allow-Methods': 'GET',
-      // 'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, Access-Control-Allow-Methods'
-  //   }
-  // };
-//   const url = "http://api.chartlyrics.com/apiv1.asmx/SearchLyricDirect?artist=michael+jackson&song=thriller";
-//   const requestOptions = {headers: {'Authorization': "Bearer eKj82WsaoW89JCnh2Lzhkz5m2xVejbBEJONdDj5aQllvfmB17HeK7JvwNJUSjyjq",'Access-Control-Allow-Origin': 'https://localhost:3000'
-// ,}};
-//   const url = "https://api.genius.com/songs/378195";
-//   // const url = "https://api.randomuser.me/";
-  // const { isLoading, data, errors } = fetch(url, requestOptions);
-  // console.log(isLoading, data, errors);
-//   const s= "asdf";
-
-
-// const { isLoading, data, errors } = axios({
-//       'url':url,
-//       'headers': {
-//         'Access-Control-Allow-Origin': '*',
-//       },
-//   })
-// console.log({data});
 
 
 class App extends Component {
@@ -88,7 +59,8 @@ class App extends Component {
     this.callAPI();
   }
   callAPI() {
-    const baseUrl = 'http://localhost:9000/lyric?';
+    // const baseUrl = 'http://localhost:9000/lyric?';
+    const baseUrl = 'https://lyricloud-api-backend.vercel.app/api/lyric?';
     const fullUrl = baseUrl + 'artist=' + this.state.artist 
     + '&' + 'song=' + this.state.song;
     console.log(fullUrl);
@@ -120,7 +92,7 @@ class App extends Component {
     if(!this.state.lyrics.length)
       return (
         <div>
-          <input type="text" onChange={this.updateArtist}></input>
+          <input type="text" ></input>
           <input type="text" onChange={this.updateSong}></input>
           <input type="submit" onClick={this.handleSubmit} ></input>
         </div>
@@ -133,7 +105,17 @@ class App extends Component {
           <input type="text" onChange={this.updateSong}></input>
           <input type="submit" onClick={this.handleSubmit} ></input>
         </div>
-          <ReactWordcloud words={this.state.lyrics}/>
+          <ReactWordcloud options={
+                            {deterministic:"true",
+                            fontSizes: [15,100],
+                            rotationAngles: [0,1],
+                            rotations: 0
+                            }
+                          }
+                          words={this.state.lyrics}
+                          minSize={[500,500]}
+                          
+                          />
           <p className="App-intro">
             {/* {this.state.lyrics} */}
           </p>
