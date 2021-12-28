@@ -4,33 +4,37 @@ import React, { Component } from 'react';
 import ReactWordcloud from 'react-wordcloud';
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
+var globalArtist = "";
+var globalSong = "";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {lyrics: [],
                   artist: "Adele", 
-                  song: "Easy+on+me"};
+                  song: "Easy On Me"};
     this.updateArtist = this.updateArtist.bind(this);
     this.updateSong = this.updateSong.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-
-    // this.updateInput = this.updateInput.bind(this);
   }
   updateArtist(event) {
-    const artist = event.target.value.replace(/ /g,'+');
-    this.setState({artist: artist});
+    const artist = event.target.value;
+    globalArtist = artist;
+    // this.setState({artist: artist});
   }
 
   updateSong(event) {
-    const song = event.target.value.replace(/ /g,'+');
-    this.setState({song: song});
+    const song = event.target.value;
+    globalSong = song;
+    // this.setState({song: song});
   }
 
   handleSubmit() {
-    console.log(this.state.artist, this.state.song);
-    this.callAPI();
+    this.setState({artist: globalArtist, song: globalSong, lyrics:[]},
+      ()=>{this.callAPI();})
+    console.log(this.state.artist, this.state.song,globalArtist,globalSong);
+    
   }
   callAPI() {
     // const baseUrl = 'http://localhost:9000/lyric?';
@@ -50,7 +54,7 @@ class App extends Component {
     this.callAPI();
   }
   render() {
-    console.log(this.state.lyrics);
+    // console.log(this.state.lyrics);
     if(!this.state.lyrics.length)
       return (
         <div>
@@ -59,30 +63,34 @@ class App extends Component {
           <input type="submit" onClick={this.handleSubmit} ></input>
         </div>
       );
+    const options = 
+      {deterministic:"true",
+      fontSizes: [15,100],
+      rotationAngles: [0,1],
+      rotations: 0
+      };
+
+    // const words = this.state.lyrics;
+    const minSize = [500,500];
+
+
+
     return (
       <div className="App">
+        <h1>Lyricloud</h1>
         <div>
           <input type="text" onChange={this.updateArtist}></input>
           <input type="text" onChange={this.updateSong}></input>
           <input type="submit" onClick={this.handleSubmit} ></input>
         </div>
+        <h2>{this.state.song}</h2>
+        <h3>{this.state.artist}</h3>
           <ReactWordcloud 
-            options={
-              {deterministic:"true",
-              fontSizes: [15,100],
-              rotationAngles: [0,1],
-              rotations: 0
-              }
-            }
+            options={options}
             words={this.state.lyrics}
-            minSize={[500,500]}
+            minSize={minSize}
           />
-          <p className="App-intro">
-            {/* {this.state.lyrics} */}
-          </p>
       </div>
-    
-
   );}
   
 }

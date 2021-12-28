@@ -1,9 +1,22 @@
+.html {
+  min-height: 100%;
+}
 .App {
   text-align: center;
   display: block;
-  
+  background-image: linear-gradient(#FF99AA, #FFD8C2);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  color: white;
+  min-height: 100vh;
+  border: 1px solid transparent;
 }
-
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -23,7 +36,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #FF99AA;
 }
 
 .App-link {
