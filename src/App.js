@@ -37,8 +37,8 @@ class App extends Component {
     
   }
   callAPI() {
-    // const baseUrl = 'http://localhost:9000/lyric?';
-    const baseUrl = 'https://lyricloud-api-backend.vercel.app/api/lyric?';
+    const baseUrl = 'http://localhost:9000/lyric?';
+    // const baseUrl = 'https://lyricloud-api-backend.vercel.app/api/lyric?';
     const fullUrl = baseUrl + 'artist=' + this.state.artist 
     + '&' + 'song=' + this.state.song;
     console.log(fullUrl);
@@ -57,39 +57,89 @@ class App extends Component {
     // console.log(this.state.lyrics);
     if(!this.state.lyrics.length)
       return (
-        <div>
-          <input type="text" onChange={this.updateArtist}></input>
-          <input type="text" onChange={this.updateSong}></input>
-          <input type="submit" onClick={this.handleSubmit} ></input>
+        <div className="App">
+        <div className="text-area">
+          <h1>Lyricloud</h1>
+          <a className="link" href="https://austinwang2312.github.io/">
+            By Austin Wang
+          </a>
+          <div>
+            <input className="input-box" type="text" placeholder="Artist"
+            onChange={this.updateArtist}></input>
+            <input className="input-box" type="text" placeholder="Song Name"
+            onChange={this.updateSong}></input>
+            <input className="submit-box" type="submit" value="search" 
+            placeholder="Song Name"
+             onClick={this.handleSubmit} ></input>
+          </div>
         </div>
+        
+    
+        <div>
+          <div className="cloud-container">
+            <div className="circle">
+              <div className="bar"></div>
+            </div>
+            <div className="circle">
+              <div className="bar"></div>
+            </div>
+            <div className="circle">
+              <div className="bar"></div>
+            </div>
+            <div className="base">
+              <div className="bar"></div>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+
+        
       );
+
+      
     const options = 
-      {deterministic:"true",
+      {
       fontSizes: [15,100],
       rotationAngles: [0,1],
-      rotations: 0
+      rotations: 0,
+      
       };
 
     // const words = this.state.lyrics;
-    const minSize = [500,500];
+    const minSize = [100,100];
 
 
 
     return (
       <div className="App">
-        <h1>Lyricloud</h1>
-        <div>
-          <input type="text" onChange={this.updateArtist}></input>
-          <input type="text" onChange={this.updateSong}></input>
-          <input type="submit" onClick={this.handleSubmit} ></input>
+        <div className="text-area">
+          <h1>Lyricloud</h1>
+          <a className="link" href="https://austinwang2312.github.io/">
+                By Austin Wang
+          </a>
+          <div>
+            <input className="input-box" type="text" placeholder="Artist"
+            onChange={this.updateArtist}></input>
+            <input className="input-box" type="text" placeholder="Song Name"
+            onChange={this.updateSong}></input>
+            <input className="submit-box" type="submit" value="search" 
+            placeholder="Song Name"
+             onClick={this.handleSubmit} ></input>
+          </div>
+          <br></br>
+          <h2>{this.state.song}</h2>
+          <h3>{this.state.artist}</h3>
         </div>
-        <h2>{this.state.song}</h2>
-        <h3>{this.state.artist}</h3>
+        
+        <div className="cloud">
           <ReactWordcloud 
             options={options}
             words={this.state.lyrics}
             minSize={minSize}
           />
+        </div>
       </div>
   );}
   
