@@ -37,10 +37,10 @@ class App extends Component {
     
   }
   callAPI() {
-    const baseUrl = 'http://localhost:9000/lyric?';
-    // const baseUrl = 'https://lyricloud-api-backend.vercel.app/api/lyric?';
+    // const baseUrl = 'http://localhost:9000/lyric?';
+    const baseUrl = 'https://lyricloud-api-backend.vercel.app/api/lyric?';
     const fullUrl = baseUrl + 'artist=' + this.state.artist 
-    + '&' + 'song=' + this.state.song;
+    + '&song=' + this.state.song;
     console.log(fullUrl);
 
     fetch(fullUrl)
