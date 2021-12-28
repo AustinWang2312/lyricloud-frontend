@@ -128,8 +128,8 @@ class App extends Component {
             placeholder="Song Name"
              onClick={this.handleSubmit} ></input>
           </div>
-          <br></br>
-          <h2>{this.state.song}</h2>
+
+          <h3>{this.state.song}</h3>
           <h3>{this.state.artist}</h3>
         </div>
         

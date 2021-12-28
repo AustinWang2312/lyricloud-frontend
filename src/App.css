@@ -13,7 +13,7 @@
 }
 .input-box {
   background-color: #FFC2CC;
-  margin-right: 30px;
+  margin-right: 20px;
   border-color: aqua;
   text-align: center;
   color: gray;
@@ -23,10 +23,10 @@ input.input-box, textarea { background: #FFC2CC; }
 .submit-box {
   background-color: #B5F8C8;
   border-color: aqua;
-  margin-right: 30px;
+  margin-right: 20px;
   text-align: center;
   color: gray;
-  width: 10%;
+  width:12%;
 }
 .link {
   font-size: 20px !important;
@@ -57,6 +57,7 @@ input.input-box, textarea { background: #FFC2CC; }
 @supports (-webkit-touch-callout: none) {
   .App {
     min-height: -webkit-fill-available;
+    max-height: -webkit-fill-available;
   }
 }
 .h2 {
