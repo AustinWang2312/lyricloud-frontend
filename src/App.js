@@ -18,6 +18,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
+
   updateArtist(event) {
     const artist = event.target.value;
     globalArtist = artist;
